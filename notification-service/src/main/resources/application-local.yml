@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/notification_db?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:commerce}
+    password: ${DB_PASSWORD:local_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 5
+      minimum-idle: 2
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: notification-service-group
+      auto-offset-reset: earliest
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    com.commerce: DEBUG
+    org.hibernate.SQL: DEBUG

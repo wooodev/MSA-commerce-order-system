@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/product_db?useSSL=false&serverTimezone=Asia/Seoul&characterEncoding=UTF-8}
+    username: ${DB_USERNAME:commerce}
+    password: ${DB_PASSWORD:local_password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    consumer:
+      group-id: product-service-group
+      auto-offset-reset: earliest
+    producer:
+      retries: 3
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
+
+logging:
+  level:
+    com.commerce: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
