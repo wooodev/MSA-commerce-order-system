@@ -13,6 +13,13 @@ spring:
       host: ${REDIS_HOST:localhost}
       port: ${REDIS_PORT:6379}
 
+  # 캐시 TTL 설정 (Cache-Aside, 기획서 명세: 상품 5분)
+  cache:
+    redis:
+      time-to-live: 300000  # 5분 (ms)
+      cache-null-values: false
+    cache-names: product
+
   kafka:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
     consumer:
